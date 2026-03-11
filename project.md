@@ -20,7 +20,7 @@ Students will conduct original research at the intersection of machine learning 
 | **Format** | NeurIPS / ICML style, 8 pages max (+ unlimited references) |
 | **Scope** | Novel application or methodological contribution in computational genomics or genomic ML |
 | **Code** | Public GitHub repository with reproducible experiments |
-| **Compute** | All training **must** run on the **NYU Torch HPC** using **PyTorch** |
+| **Compute** | All compute-intensive experiments **must** run on the **NYU Torch HPC** |
 
 ### Topic Ideas (non-exhaustive)
 
@@ -34,11 +34,11 @@ Students will conduct original research at the intersection of machine learning 
 
 ## Compute Requirements
 
-All model training **must** be performed on the **NYU Torch HPC cluster** using **PyTorch**. See the [HPC Guide](hpc_guide.md) for Slurm submission scripts and boilerplate code.
+All compute-intensive experiments **must** run on the **NYU Torch HPC cluster**. See the [HPC Guide](hpc_guide.md) for Slurm submission scripts and environment setup.
 
-- Use `torch.cuda.amp` for mixed-precision training
-- Log experiments with Weights & Biases or TensorBoard
-- Save checkpoints to your Torch scratch space (`$SCRATCH`)
+- Use the tool appropriate for your project: PyTorch, R, scikit-learn, or domain-specific tools (e.g., PLINK, GATK, Scanpy)
+- Log experiments and results for reproducibility (Weights & Biases, TensorBoard, or equivalent)
+- Save outputs and checkpoints to your Torch scratch space (`$SCRATCH`)
 
 ---
 

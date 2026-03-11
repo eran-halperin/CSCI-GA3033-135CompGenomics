@@ -3,15 +3,14 @@ layout: default
 title: Syllabus
 ---
 
-# Computational Genomics & Machine Learning (Spring 2026)
+# Computational Genomics (Fall 2026)
 
 **CSCI-GA 3033-135 | New York University**
 
 | | |
 |---|---|
 | **Instructor** | Eran Halperin, PhD |
-| **Office** | One Park Ave, Manhattan |
-| **Lab / Compute** | NYU Torch HPC |
+| **Office** | TBD |
 
 ---
 
@@ -21,24 +20,23 @@ This course bridges classical statistical genomics and modern deep learning, tak
 
 ---
 
-## Weekly Schedule
+## Tentative Schedule
 
-| Week | Topic | Key Methods / Papers |
+| Topic | Key Methods / Papers |
 |------|-------|----------------------|
-| 1 | **Probabilistic Foundations I** — Maximum Likelihood Estimation | MLE, Fisher Information, Score Functions |
-| 2 | **Probabilistic Foundations II** — Optimization | Gradient Descent, Newton–Raphson, Convexity |
-| 3 | **Probabilistic Foundations III** — The EM Algorithm | EM derivation, convergence guarantees |
-| 4 | **Probabilistic Foundations IV** — Haplotype Phasing | Statistical phasing, SHAPEIT, BEAGLE |
-| 5 | **Population Structure** — Hidden Markov Models | HMMs, Viterbi, Forward-Backward, ADMIXTURE |
-| 6 | **GWAS & Linear Mixed Models** | Linear Mixed Models, BOLT-LMM, SAIGE |
-| 7 | **Polygenic Risk Scores** | LDpred2, PRSice, clumping & thresholding |
-| 8 | **Epigenomics & Cell-type Deconvolution** | ATAC-seq, ENCODE, CIBERSORT, MuSiC |
-| 9 | **Single-Cell Genomics** — Technology & Analysis | scRNA-seq, Seurat, Scanpy, UMAP |
-| 10 | **Single-Cell Dynamics** — RNA Velocity | scVelo, Dynamo, splicing kinetics |
-| 11 | **Genomic Foundational Models I** — Transformers | Attention, BERT, Nucleotide Transformer, DNABERT |
-| 12 | **Genomic Foundational Models II** — Enformer | Enformer architecture, sequence-to-function prediction |
-| 13 | **Genomic Foundational Models III** — Evo & Multimodal AI | Evo (state-space genomic model), multimodal genomics |
-| 14 | **Final Conference & Peer Review** | Student paper presentations, double-blind review |
+| **Intro: The Multi-Omic Landscape** | DNA, RNA, Methylation and the Microbiome |
+| **Probabilistic Foundations I** | Maximum Likelihood Estimation (MLE) |
+| **Probabilistic Foundations II** | Optimization and the EM Algorithm - Haplotype Phasing |
+| **Epigenomics & Deconvolution** | CIBERSORT, UNICO, Tensor Composition Analysis |
+| **Microbiome & Metagenomics** | Source Tracking, Time Series Data, Foundational Models |
+| **Genomic Foundational Models I** | Transformers: Attention, BERT, DNABERT |
+| **Genomic Foundational Models II** | Foundational Models in methylation and microbiome data |
+| **Population Structure I** | PCA and Eigenstrat for Ancestry Inference, sparse PCA in methylation |
+| **Population Structure II** | HMMs and Autoencoders |
+| **GWAS & Linear Mixed Models** | Linear Mixed Models and heritability estimates |
+| **Polygenic Risk Scores** | PRS calculations from summary data |
+
+
 
 ---
 
@@ -56,7 +54,7 @@ There is **no homework** in this course. The grade is centered on the [Final Res
 
 ## Prerequisites
 
-- Probability & Statistics (graduate level)
+- Probability & Statistics
 - Linear Algebra
 - Python programming experience
 - Familiarity with machine learning fundamentals is helpful but not required

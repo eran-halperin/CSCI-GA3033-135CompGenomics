@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>NYU Torch HPC Guide | Computational Genomics</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="NYU Torch HPC Guide" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Statistical Foundations to Genomic Foundational Models" />
+<meta property="og:description" content="Statistical Foundations to Genomic Foundational Models" />
+<link rel="canonical" href="http://0.0.0.0:4000/hpc_guide.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/hpc_guide.html" />
+<meta property="og:site_name" content="Computational Genomics" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="NYU Torch HPC Guide" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Statistical Foundations to Genomic Foundational Models","headline":"NYU Torch HPC Guide","url":"http://0.0.0.0:4000/hpc_guide.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=bc2fe013d05298b48632b191fce6c5ebaf0f47dc">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://0.0.0.0:4000/">Computational Genomics</a></h1>
+
+        
+
+        <p>Statistical Foundations to Genomic Foundational Models</p>
+
+        
+        <p class="view"><a href="https://github.com/eran-halperin/CSCI-GA3033-135CompGenomics">View the Project on GitHub <small>eran-halperin/CSCI-GA3033-135CompGenomics</small></a></p>
+        
+
+        
+
+        
+      </header>
+      <section>
+
+      <h1 id="nyu-torch-hpc-guide">NYU Torch HPC Guide</h1>
+
+<p>All compute-intensive course project experiments must run on the <strong>NYU Torch HPC cluster</strong>. This guide covers connecting to the cluster, submitting jobs with Slurm, and environment setup for common tools (PyTorch, R, Python).</p>
+
+<hr />
+
+<h2 id="connecting-to-torch">Connecting to Torch</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh &lt;NetID&gt;@torch.hpc.nyu.edu
+</code></pre></div></div>
+
+<p>Your scratch space (for large datasets and checkpoints) is at:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/scratch/&lt;NetID&gt;/
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Do not store large files in your home directory</strong> — it has a strict quota. Always use <code class="language-plaintext highlighter-rouge">$SCRATCH</code>.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="sample-slurm-script">Sample Slurm Script</h2>
+
+<p>Save the following as <code class="language-plaintext highlighter-rouge">submit_job.sh</code> and submit with <code class="language-plaintext highlighter-rouge">sbatch submit_job.sh</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --job-name=compgen_train</span>
+<span class="c">#SBATCH --nodes=1</span>
+<span class="c">#SBATCH --ntasks-per-node=1</span>
+<span class="c">#SBATCH --cpus-per-task=8</span>
+<span class="c">#SBATCH --gres=gpu:1                  # Request 1 GPU</span>
+<span class="c">#SBATCH --mem=32GB                    # Request 32 GB RAM</span>
+<span class="c">#SBATCH --time=12:00:00              # Max wall time (HH:MM:SS)</span>
+<span class="c">#SBATCH --output=%x_%j.out           # stdout log: jobname_jobid.out</span>
+<span class="c">#SBATCH --error=%x_%j.err            # stderr log</span>
+<span class="c">#SBATCH --mail-type=END,FAIL</span>
+<span class="c">#SBATCH --mail-user=&lt;NetID&gt;@nyu.edu</span>
+
+<span class="c"># --- Environment setup ---</span>
+module purge
+module load python/3.11
+module load cuda/12.1
+
+<span class="nb">source</span> ~/.venv/compgen/bin/activate   <span class="c"># or: conda activate compgen</span>
+
+<span class="c"># --- Run training ---</span>
+python train.py <span class="se">\</span>
+    <span class="nt">--data_dir</span> <span class="s2">"</span><span class="nv">$SCRATCH</span><span class="s2">/data/"</span> <span class="se">\</span>
+    <span class="nt">--output_dir</span> <span class="s2">"</span><span class="nv">$SCRATCH</span><span class="s2">/checkpoints/run_</span><span class="k">${</span><span class="nv">SLURM_JOB_ID</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--epochs</span> 50 <span class="se">\</span>
+    <span class="nt">--batch_size</span> 64
+</code></pre></div></div>
+
+<p>Submit and monitor your job:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sbatch submit_job.sh          <span class="c"># submit</span>
+squeue <span class="nt">-u</span> <span class="nv">$USER</span>               <span class="c"># check queue</span>
+scancel &lt;JOBID&gt;               <span class="c"># cancel a job</span>
+sacct <span class="nt">-j</span> &lt;JOBID&gt; <span class="nt">--format</span><span class="o">=</span>JobID,Elapsed,MaxRSS,State   <span class="c"># job accounting</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="pytorch-boilerplate-for-deep-learning-projects">PyTorch Boilerplate (for deep learning projects)</h2>
+
+<p>The snippet below handles device detection (CUDA → MPS → CPU) and enables <strong>mixed-precision training</strong> via <code class="language-plaintext highlighter-rouge">torch.cuda.amp</code> for faster, memory-efficient GPU utilization. Skip this section if your project uses R or other tools.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.cuda.amp</span> <span class="kn">import</span> <span class="n">GradScaler</span><span class="p">,</span> <span class="n">autocast</span>
+
+<span class="c1"># ── Device detection ────────────────────────────────────────────────────────
+</span><span class="k">def</span> <span class="nf">get_device</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">device</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">device</span><span class="p">(</span><span class="s">"cuda"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Using CUDA: </span><span class="si">{</span><span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="n">get_device_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">torch</span><span class="p">.</span><span class="n">backends</span><span class="p">.</span><span class="n">mps</span><span class="p">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">device</span><span class="p">(</span><span class="s">"mps"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Using Apple MPS (local dev only — switch to CUDA on Torch)"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">device</span><span class="p">(</span><span class="s">"cpu"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Warning: no GPU found, falling back to CPU"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">device</span>
+
+
+<span class="c1"># ── Training loop with mixed precision ──────────────────────────────────────
+</span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">get_device</span><span class="p">()</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># GradScaler is a no-op on CPU/MPS — safe to always instantiate
+</span>    <span class="n">scaler</span> <span class="o">=</span> <span class="n">GradScaler</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="n">device</span><span class="p">.</span><span class="nb">type</span> <span class="o">==</span> <span class="s">"cuda"</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">model</span><span class="p">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loader</span><span class="p">):</span>
+            <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">targets</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+            <span class="n">optimizer</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+            <span class="c1"># Mixed-precision forward pass
+</span>            <span class="k">with</span> <span class="n">autocast</span><span class="p">(</span><span class="n">device_type</span><span class="o">=</span><span class="n">device</span><span class="p">.</span><span class="nb">type</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="n">device</span><span class="p">.</span><span class="nb">type</span> <span class="o">==</span> <span class="s">"cuda"</span><span class="p">):</span>
+                <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+                <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+
+            <span class="c1"># Scaled backward pass
+</span>            <span class="n">scaler</span><span class="p">.</span><span class="n">scale</span><span class="p">(</span><span class="n">loss</span><span class="p">).</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">scaler</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+            <span class="n">scaler</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
+
+            <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="p">.</span><span class="n">item</span><span class="p">()</span>
+
+        <span class="n">avg_loss</span> <span class="o">=</span> <span class="n">running_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Epoch [</span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s">]  loss: </span><span class="si">{</span><span class="n">avg_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="c1"># ── Checkpoint helpers ───────────────────────────────────────────────────────
+</span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">save_checkpoint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">torch</span><span class="p">.</span><span class="n">save</span><span class="p">({</span>
+        <span class="s">"epoch"</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
+        <span class="s">"model_state_dict"</span><span class="p">:</span> <span class="n">model</span><span class="p">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s">"optimizer_state_dict"</span><span class="p">:</span> <span class="n">optimizer</span><span class="p">.</span><span class="n">state_dict</span><span class="p">(),</span>
+    <span class="p">},</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Checkpoint saved → </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_checkpoint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s">"cpu"</span><span class="p">)</span>
+    <span class="n">model</span><span class="p">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s">"model_state_dict"</span><span class="p">])</span>
+    <span class="n">optimizer</span><span class="p">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s">"optimizer_state_dict"</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Resumed from epoch </span><span class="si">{</span><span class="n">checkpoint</span><span class="p">[</span><span class="s">'epoch'</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s">"epoch"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="recommended-environments">Recommended Environments</h2>
+
+<p><strong>Python / PyTorch (deep learning projects)</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv <span class="s2">"</span><span class="nv">$SCRATCH</span><span class="s2">/.venv/compgen"</span>
+<span class="nb">source</span> <span class="s2">"</span><span class="nv">$SCRATCH</span><span class="s2">/.venv/compgen/bin/activate"</span>
+
+pip <span class="nb">install </span>torch torchvision torchaudio <span class="nt">--index-url</span> https://download.pytorch.org/whl/cu121
+pip <span class="nb">install </span>transformers datasets accelerate wandb einops
+</code></pre></div></div>
+
+<p><strong>Python / Bioinformatics (single-cell, epigenomics, microbiome)</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>scanpy anndata pydeseq2 scikit-learn pandas numpy
+</code></pre></div></div>
+
+<p><strong>R (statistical genomics, GWAS, PRS)</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load r/4.3
+<span class="c"># Then inside R:</span>
+<span class="c"># install.packages(c("MASS", "lme4", "glmnet", "ggplot2"))</span>
+<span class="c"># BiocManager::install(c("limma", "minfi", "DESeq2"))</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="useful-links">Useful Links</h2>
+
+<ul>
+  <li><a href="https://sites.google.com/nyu.edu/nyu-hpc">NYU HPC Documentation</a></li>
+  <li><a href="https://slurm.schedmd.com/pdfs/summary.pdf">Slurm Cheat Sheet</a></li>
+  <li><a href="https://pytorch.org/docs/stable/amp.html">PyTorch AMP docs</a></li>
+</ul>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/eran-halperin">eran-halperin</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+  </body>
+</html>

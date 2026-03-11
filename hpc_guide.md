@@ -5,7 +5,7 @@ title: NYU Torch HPC Guide
 
 # NYU Torch HPC Guide
 
-All course project training must run on the **NYU Torch HPC cluster**. This guide covers connecting to the cluster, submitting GPU jobs with Slurm, and PyTorch best practices.
+All compute-intensive course project experiments must run on the **NYU Torch HPC cluster**. This guide covers connecting to the cluster, submitting jobs with Slurm, and environment setup for common tools (PyTorch, R, Python).
 
 ---
 
@@ -69,9 +69,9 @@ sacct -j <JOBID> --format=JobID,Elapsed,MaxRSS,State   # job accounting
 
 ---
 
-## PyTorch Boilerplate
+## PyTorch Boilerplate (for deep learning projects)
 
-The snippet below handles device detection (CUDA → MPS → CPU) and enables **mixed-precision training** via `torch.cuda.amp` for faster, memory-efficient GPU utilization.
+The snippet below handles device detection (CUDA → MPS → CPU) and enables **mixed-precision training** via `torch.cuda.amp` for faster, memory-efficient GPU utilization. Skip this section if your project uses R or other tools.
 
 ```python
 import torch
@@ -147,15 +147,28 @@ def load_checkpoint(model, optimizer, path: str) -> int:
 
 ---
 
-## Recommended Python Environment
+## Recommended Environments
 
+**Python / PyTorch (deep learning projects)**
 ```bash
-# On Torch — create a virtual environment in your scratch space
 python -m venv "$SCRATCH/.venv/compgen"
 source "$SCRATCH/.venv/compgen/bin/activate"
 
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 pip install transformers datasets accelerate wandb einops
+```
+
+**Python / Bioinformatics (single-cell, epigenomics, microbiome)**
+```bash
+pip install scanpy anndata pydeseq2 scikit-learn pandas numpy
+```
+
+**R (statistical genomics, GWAS, PRS)**
+```bash
+module load r/4.3
+# Then inside R:
+# install.packages(c("MASS", "lme4", "glmnet", "ggplot2"))
+# BiocManager::install(c("limma", "minfi", "DESeq2"))
 ```
 
 ---
