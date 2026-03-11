@@ -1,0 +1,17 @@
+theme: jekyll-theme-minimal
+title: "Computational Genomics & ML"
+description: "Statistical Foundations to Genomic Foundational Models"
+
+# Custom metadata
+instructor: "Eran Halperin, PhD"
+office: "One Park Ave, Manhattan"
+lab: "NYU Torch HPC"
+
+# Navigation
+nav:
+  - title: "Syllabus"
+    url: /
+  - title: "Final Project"
+    url: /project
+  - title: "HPC Guide"
+    url: /hpc_guide
