@@ -16,7 +16,7 @@ title: Syllabus
 
 ## Course Overview
 
-This course bridges classical statistical genomics and modern deep learning, taking students from maximum likelihood estimation through large-scale genomic foundational models. By the end of the semester, students will have hands-on experience with state-of-the-art methods applied to real genomic data.
+This course will bridge classical statistical genomics and modern deep learning, taking students from maximum likelihood estimation through large-scale genomic foundational models. By the end of the semester, students will have hands-on experience with state-of-the-art methods applied to real genomic data.
 
 ---
 
@@ -54,7 +54,4 @@ There is **no homework** in this course. The grade is centered on the [Final Res
 
 ## Prerequisites
 
-- Probability & Statistics
-- Linear Algebra
-- Python programming experience
-- Familiarity with machine learning fundamentals is helpful but not required
+Python programming experience. Previous coursework in probability, statistics, and linear Algebra. Familiarity with machine learning fundamentals is helpful but not required. 
