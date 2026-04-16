@@ -20,7 +20,7 @@ This course will bridge classical statistical genomics and modern deep learning,
 
 The course will not include an exam - each group of students (2-4 students) will choose a project to work on - the description of the methodology, analysis, and results will be described in a research paper format (e.g., RECOMB, NeurIPS) in up to 10 pages. Each student will have to review and critique two other papers.
 
-The following is a tentative syllabus - we may deviate slightly from this list of topics based on the students' interests, the projects, or the instructor's choice.
+The following is a **tentative** syllabus - we may deviate slightly from this list of topics based on the students' interests, the projects, or the instructor's choice.
 
 ---
 
