@@ -18,6 +18,10 @@ title: Syllabus
 
 This course will bridge classical statistical genomics and modern deep learning, taking students from maximum likelihood estimation through large-scale genomic foundational models. By the end of the semester, students will have hands-on experience with state-of-the-art methods applied to real genomic data.
 
+The course will not include an exam - each group of students (2-4 students) will choose a project to work on - the description of the methodology, analysis, and results will be described in a research paper format (e.g., RECOMB, NeurIPS) in up to 10 pages. Each student will have to review and critique two other papers.
+
+The following is a tentative syllabus - we may deviate slightly from this list of topics based on the students' interests, the projects, or the instructor's choice.
+
 ---
 
 ## Tentative Schedule
