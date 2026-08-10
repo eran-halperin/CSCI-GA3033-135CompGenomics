@@ -1,33 +1,27 @@
 ---
 layout: default
-title: NYU Torch HPC Guide
+title: NYU HPC Guide
 ---
 
-# NYU Torch HPC Guide
+# NYU HPC Guide
 
-All compute-intensive course project experiments must run on the **NYU Torch HPC cluster**. This guide covers connecting to the cluster, submitting jobs with Slurm, and environment setup for common tools (PyTorch, R, Python).
+All compute-intensive course project experiments must run on the **NYU HPC Cloud Bursting platform** (the instructional GPU platform provided by NYU IT — distinct from the Torch cluster, which is for research use only). Available resources include **A100 (40 GB)** and **L4** GPUs, with shared file systems for course data.
+
+> **Note:** The platform is being updated ahead of the fall semester and is expected to be ready by mid-August. Detailed connection instructions and documentation will be shared once accounts are provisioned — this page will be updated accordingly. The Slurm example below is illustrative; exact hostnames, module names, and paths will be confirmed once documentation arrives.
 
 ---
 
-## Connecting to Torch
+## Getting an Account
 
-```bash
-ssh <NetID>@torch.hpc.nyu.edu
-```
+Student and TA accounts are requested in bulk by the instructor after the semester begins. If you don't yet have access, check with the instructor. See NYU IT's [account request documentation](https://services.rt.nyu.edu/docs/hpc/getting_started/HPC_Accounts/getting_and_renewing_an_account/) for background on the process.
 
-Your scratch space (for large datasets and checkpoints) is at:
-
-```bash
-/scratch/<NetID>/
-```
-
-> **Do not store large files in your home directory** — it has a strict quota. Always use `$SCRATCH`.
+> **Shared storage caveat:** The platform's shared file systems are **not optimized for very large datasets**. Plan your data management strategy accordingly (e.g., subsampling, staging data closer to compute, or using compressed formats) — details will be refined once full documentation is available.
 
 ---
 
 ## Sample Slurm Script
 
-Save the following as `submit_job.sh` and submit with `sbatch submit_job.sh`.
+Save the following as `submit_job.sh` and submit with `sbatch submit_job.sh`. **Illustrative example** — module names, paths, and `$SCRATCH` conventions will be confirmed once the platform's documentation is shared.
 
 ```bash
 #!/bin/bash
@@ -84,7 +78,7 @@ def get_device() -> torch.device:
         print(f"Using CUDA: {torch.cuda.get_device_name(0)}")
     elif torch.backends.mps.is_available():
         device = torch.device("mps")
-        print("Using Apple MPS (local dev only — switch to CUDA on Torch)")
+        print("Using Apple MPS (local dev only — switch to CUDA on the HPC platform)")
     else:
         device = torch.device("cpu")
         print("Warning: no GPU found, falling back to CPU")

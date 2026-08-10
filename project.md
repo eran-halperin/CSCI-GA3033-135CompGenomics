@@ -20,7 +20,7 @@ Students will conduct original research at the intersection of machine learning 
 | **Format** | NeurIPS / ICML style, 8 pages max (+ unlimited references) |
 | **Scope** | Novel application or methodological contribution in computational genomics or genomic ML |
 | **Code** | Public GitHub repository with reproducible experiments |
-| **Compute** | All compute-intensive experiments **must** run on the **NYU Torch HPC** |
+| **Compute** | All compute-intensive experiments **must** run on the **NYU HPC Cloud Bursting platform** |
 
 ### Topic Ideas (non-exhaustive)
 
@@ -34,11 +34,11 @@ Students will conduct original research at the intersection of machine learning 
 
 ## Compute Requirements
 
-All compute-intensive experiments **must** run on the **NYU Torch HPC cluster**. See the [HPC Guide](hpc_guide.md) for Slurm submission scripts and environment setup.
+All compute-intensive experiments **must** run on the **NYU HPC Cloud Bursting platform** (A100 40GB / L4 GPUs). See the [HPC Guide](hpc_guide.md) for Slurm submission scripts and environment setup — this page will be updated as NYU IT finalizes documentation ahead of the fall semester.
 
 - Use the tool appropriate for your project: PyTorch, R, scikit-learn, or domain-specific tools (e.g., PLINK, GATK, Scanpy)
 - Log experiments and results for reproducibility (Weights & Biases, TensorBoard, or equivalent)
-- Save outputs and checkpoints to your Torch scratch space (`$SCRATCH`)
+- Save outputs and checkpoints to shared scratch storage (`$SCRATCH`) — note that shared storage is not optimized for very large datasets, so plan your data management accordingly
 
 ---
 
