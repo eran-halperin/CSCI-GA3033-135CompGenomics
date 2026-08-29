@@ -12,6 +12,8 @@ title: Syllabus
 | **Instructor** | Eran Halperin, PhD |
 | **Office** | TBD |
 
+> **Note:** Further course material (lecture slides, readings, assignments, and announcements) will be published on Brightspace.
+
 ---
 
 ## Course Description
