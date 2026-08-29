@@ -7,20 +7,20 @@ title: Project & Presentation
 
 ## Overview
 
-> **There are no exams and no homework in this course.** Each student chooses **one** of two options — a hands-on project or a topic presentation. The grade is **80%** presentation (project or topic) + **20%** participation in the class forum.
+> **There are no exams and no homework in this course.** You choose **one** of two tracks — a hands-on project or a topic presentation. The grade is **80%** presentation (project or topic) + **20%** participation in the class forum.
 
-The objective is to provide familiarity with machine learning and statistical genomics. See the [Syllabus](/) for the full assignments and policies.
+This course is about gaining real familiarity with machine learning and statistical genomics. See the [Syllabus](/) for the full assignments and policies.
 
 ---
 
-## Option 1 — Hands-on Project
+## Track 1 — Hands-on Project
 
-Students choose a project where they use existing data and code from an earlier paper for benchmarking and for developing improved approaches. These are guided projects with the teaching staff.
+Start from the data and code of a published paper, then benchmark it and push it further with your own improvements. Projects are guided by the teaching staff.
 
-Projects are chosen from a list of topics provided by the teaching staff. Examples (non-exhaustive):
+You pick from a list of topics provided by the teaching staff. Examples (non-exhaustive):
 
-- **Tumor detection (MRD)** — finding tumor signals in cell-free DNA samples.
-- **Methylation foundational models** — using deep learning (transformer) approaches, specifically foundational models similar to ChatGPT, to predict health conditions of patients.
+- **Tumor detection (MRD)** — finding tumor signal in cell-free DNA.
+- **Methylation foundation models** — using transformer-based models (the same family as ChatGPT) to predict patients' health conditions from methylation data.
 
 ### Deliverables
 
@@ -40,21 +40,21 @@ Compute-intensive experiments should run on the **NYU HPC Cloud Bursting platfor
 
 ---
 
-## Option 2 — Topic Presentation
+## Track 2 — Topic Presentation
 
-Students can opt out of the hands-on project and instead present to the class a topic that covers a couple of computational approaches in one of the topics covered in the course.
+Prefer breadth over building? Instead of a project, present a topic to the class covering a couple of computational approaches from one of the areas we study.
 
-- The list of topics and papers will be given early in the semester.
-- Student presentations take place toward the end of the semester.
+- Topics and papers are assigned early in the semester.
+- Presentations take place near the end of the semester.
 
 ---
 
 ## Class Forum Participation
 
-Throughout the semester, students are expected to send questions as well as answer other students' questions in the class forum. This accounts for **20%** of the grade.
+Throughout the semester, everyone takes part in the class forum — posting questions and answering classmates'. This accounts for **20%** of the grade.
 
 ---
 
-## AI Policy
+## Use of AI
 
-The usage of AI is allowed, both for coding and to prepare the presentations.
+Using AI tools is allowed and encouraged, both for coding and for preparing your presentation.

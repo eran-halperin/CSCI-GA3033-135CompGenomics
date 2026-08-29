@@ -16,16 +16,20 @@ title: Syllabus
 
 ## Course Description
 
-This course will bridge classical statistical genomics and modern deep learning applications in genomics — we will go over topics from maximum likelihood estimation through large-scale genomic foundational models. The objective of the course is to provide an overview of applications of machine learning in genomics, going deep into a few specific subjects, specifically:
+How do we find the genes behind a disease? Can a blood test catch a tumor before any symptoms appear? And can the same kind of "foundation model" that powers ChatGPT and Claude Code learn to read the genome?
 
-- **Connecting genes to disease** — how do we find genes that are related to disease, how do we infer the ancestry of a patient from their genetic content, and how are these two topics connected.
-- **Foundational models in genomics** — recent advances in foundational models led to incredible advances in AI (e.g., ChatGPT, Claude Code, etc.). These models "understand" human language. In recent years similar approaches have been adopted by the computational genomics community, trying to "understand" genomic data. We will go over a few of these models and see their applications.
-- **Early cancer detection** — when cancer develops in the kidney, some of the "leftovers" of the tumor are circulating in the blood. Using a blood test, we can "read" these and try to find out whether cancer is developing, changing, or becoming more aggressive. We will learn the computational approaches that are used to detect these changes.
-- **Deconvolution models** — biological samples are often heterogeneous and composed of many different types of tissues — for example, a blood sample is composed of many different cell types. We will learn about machine learning methods that de-convolute the data: the input is the read of the data from the heterogeneous sample, and the output is the information for each of the components (in the above case, cell types).
+This course bridges classical statistical genomics and modern deep learning. We start from first principles — maximum likelihood estimation, the EM algorithm, hidden Markov models — and build up to the large-scale genomic foundation models now reshaping the field. The goal is a working understanding of how machine learning is used in genomics today: broad enough to see the whole landscape, deep enough to build things yourself.
 
-We will connect the computational methods to actual science and applications in biology and medicine. For example, we will show how computationally finding the genetic ancestry of a patient can help find genes that are related to that disease.
+We go deep on four themes:
 
-No background in biology is needed — this is a computational class and the focus is on the computational methodology; we will go over the biological concepts in class.
+- **Connecting genes to disease.** How do we identify genes associated with a disease, how do we infer a patient's genetic ancestry from their DNA, and why do these two problems turn out to be deeply linked?
+- **Foundation models for genomics.** The breakthroughs behind ChatGPT and Claude come from models that "understand" human language. The computational genomics community is now adapting the same ideas to "understand" DNA, RNA, and methylation data. We study several of these models and what they can do.
+- **Early cancer detection.** When a tumor grows in the kidney, fragments of it circulate in the blood. A simple blood draw lets us "read" those fragments and ask whether a cancer is emerging, evolving, or turning aggressive. We cover the computational methods that make this possible.
+- **Deconvolution.** Biological samples are mixtures — a blood sample contains many different cell types. Deconvolution methods take a measurement of the whole mixture and recover the signal from each component. We study the machine learning behind them.
+
+Throughout, we connect the computational methods back to the underlying science and to real applications in biology and medicine — for example, how inferring a patient's genetic ancestry can help pinpoint the genes that drive their disease.
+
+**No biology background is required.** This is a computational course focused on methodology; we cover the biological concepts we need as we go.
 
 The following is a **tentative** syllabus - we may deviate slightly from this list of topics based on the students' interests, the projects, or the instructor's choice.
 
@@ -53,24 +57,22 @@ The following is a **tentative** syllabus - we may deviate slightly from this li
 
 ## Course Assignments and Policies
 
-The objective of the class is to provide familiarity with machine learning and statistical genomics. There will be no exams. Instead, students choose **one** of the following two options (you do not need to do both):
+This course is about gaining real familiarity with machine learning and statistical genomics — so there are no exams. Instead, you choose **one** of two tracks (you don't do both):
 
-**Hands-on project.** Students choose a project where they use existing data and code from an earlier paper for benchmarking and for developing improved approaches. These are guided projects with the teaching staff and include a short summary and a presentation of the results toward the end of the semester. Students choose the project from a list of topics — examples of potential projects:
+- **Hands-on project.** Start from the data and code of a published paper, then benchmark it and push it further with your own improvements. Projects are guided by the teaching staff, and you'll produce a short write-up and present your results near the end of the semester. You pick from a list of topics, for example:
+  - **Tumor detection (MRD):** finding tumor signal in cell-free DNA.
+  - **Methylation foundation models:** using transformer-based models (the same family as ChatGPT) to predict patients' health conditions from methylation data.
+- **Topic presentation.** Prefer breadth over building? Instead of a project, present a topic to the class covering a couple of computational approaches from one of the areas we study. Topics and papers are assigned early in the semester; presentations take place near the end.
 
-- **Tumor detection (MRD)** — finding tumor signals in cell-free DNA samples.
-- **Methylation foundational models** — using deep learning (transformer) approaches, specifically foundational models similar to ChatGPT, to predict health conditions of patients.
+Everyone also takes part in the class forum throughout the semester — posting questions and answering classmates'.
 
-**Topic presentation.** Students can opt out of the hands-on project and instead present to the class a topic that covers a couple of computational approaches in one of the topics that we cover in the class. The list of topics and papers will be given early in the semester, and the student presentations will take place toward the end of the semester.
+**Use of AI.** Using AI tools is allowed and encouraged, both for coding and for preparing your presentation.
 
-In addition, students are expected to send questions as well as answer other students' questions in the class forum during the semester.
-
-**AI policy.** The usage of AI is allowed, both for coding and to prepare the presentations.
-
-### Grade components
+### Grade
 
 | Component | Weight |
 |-----------|--------|
-| Topic presentation / hands-on project presentation | 80% |
+| Presentation (hands-on project or topic) | 80% |
 | Participation in the class forum | 20% |
 
 There is **no homework** and there are **no exams** in this course. See the [Project & Presentation](project.md) page for details.
