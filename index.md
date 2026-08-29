@@ -31,27 +31,33 @@ Throughout, we connect the computational methods back to the underlying science 
 
 **No biology background is required.** This is a computational course focused on methodology; we cover the biological concepts we need as we go.
 
-The following is a **tentative** syllabus - we may deviate slightly from this list of topics based on the students' interests, the projects, or the instructor's choice.
-
 ---
 
-## Tentative Schedule
+## Course Units
 
-| Topic | Key Methods / Papers |
-|------|-------|----------------------|
-| **Intro: The Multi-Omic Landscape** | DNA, RNA, Methylation and the Microbiome |
-| **Probabilistic Foundations I** | Maximum Likelihood Estimation (MLE) |
-| **Probabilistic Foundations II** | Optimization and the EM Algorithm - Haplotype Phasing |
-| **Epigenomics & Deconvolution** | CIBERSORT, UNICO, Tensor Composition Analysis |
-| **Microbiome & Metagenomics** | Source Tracking, Time Series Data, Foundational Models |
-| **Genomic Foundational Models I** | Transformers: Attention, BERT, DNABERT |
-| **Genomic Foundational Models II** | Foundational Models in methylation and microbiome data |
-| **Population Structure I** | PCA and Eigenstrat for Ancestry Inference, sparse PCA in methylation |
-| **Population Structure II** | HMMs and Autoencoders |
-| **GWAS & Linear Mixed Models** | Linear Mixed Models and heritability estimates |
-| **Polygenic Risk Scores** | PRS calculations from summary data |
+The course is organized into four units. This outline is **tentative** — we may shift emphasis based on students' interests, the projects, or the instructor's choice — but the arc stays the same: build the statistical foundations, then use them to understand modern genomic machine learning.
 
+### Unit 1 — Introduction to Genomics
 
+A fast, friendly tour of genomics: the handful of biological ideas this course actually needs, and a map of where the semester is headed. No prior biology required — we build the background here so everyone starts on the same page.
+
+### Unit 2 — Statistical Genomics
+
+The classical backbone of the field. We develop the statistical machinery for estimating genomic parameters — ancestry inference, haplotype phasing, and variant calling — along with the methods that power them:
+
+- Maximum likelihood estimation
+- Expectation–Maximization
+- Hidden Markov models
+- Principal component analysis, and its connection to MLE
+- Linear mixed models
+
+### Unit 3 — Foundation Models in Genomics
+
+The same ideas behind modern language models, now trained on DNA. We cover the deep learning architectures and pretraining strategies used in genomic foundation models, with a focus on methylation and DNA sequence data.
+
+### Unit 4 — Deconvolution Methods in Genomics
+
+Real genomic samples are mixtures. A tumor biopsy contains cells from multiple organs; a methylation or RNA sample blends many cell types; a microbiome sample pools many microbial genomes. We study machine learning methods that pull these mixtures apart — tensor deconvolution, non-negative matrix factorization, and maximum likelihood approaches — with applications across methylation, microbiome, and cancer genomics.
 
 ---
 
