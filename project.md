@@ -32,11 +32,11 @@ You pick from a list of topics provided by the teaching staff. Examples (non-exh
 
 ### Compute
 
-Compute-intensive experiments should run on the **NYU HPC Cloud Bursting platform** (A100 40GB / L4 GPUs). See the [HPC Guide](hpc_guide.md) for Slurm submission scripts and environment setup. This page will be updated as NYU IT finalizes documentation ahead of the fall semester.
+Students on the project track are given access to **Google Cloud Platform (GCP)** as part of the course. The instructor arranges this, so there is nothing to set up or pay for. You should have a GitHub account for your project code. Setup instructions are posted on Brightspace.
 
-- Use the tool appropriate for your project: PyTorch, R, scikit-learn, or domain-specific tools (e.g., PLINK, GATK, Scanpy)
+- Use the tools appropriate for your project: PyTorch, R, scikit-learn, or domain-specific tools (e.g., PLINK, GATK, Scanpy)
 - Log experiments and results for reproducibility (Weights & Biases, TensorBoard, or equivalent)
-- Save outputs and checkpoints to shared scratch storage (`$SCRATCH`). Shared storage is not optimized for very large datasets, so plan your data management accordingly
+- Keep raw data and large intermediate files out of Git; track only code and configuration
 
 ---
 
@@ -57,4 +57,4 @@ Throughout the semester, everyone takes part in the class forum, posting questio
 
 ## Use of AI
 
-Using AI tools is allowed and encouraged, both for coding and for preparing your presentation.
+Generative AI tools are permitted and encouraged, for coding and for preparing your presentation. You remain fully responsible for what you submit: verify all claims, code, and citations, and include a brief note in your summary or presentation on which tools you used and for what. See the [Syllabus](/) for the full policy.
