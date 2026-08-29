@@ -6,13 +6,13 @@ description: "Statistical Foundations to Genomic Foundational Models"
 # Custom metadata
 instructor: "Eran Halperin, PhD"
 office: "One Park Ave, Manhattan"
-lab: "NYU Torch HPC"
+lab: "NYU HPC Cloud Bursting"
 
 # Navigation
 nav:
   - title: "Syllabus"
     url: /
-  - title: "Final Project"
+  - title: "Project & Presentation"
     url: /project
   - title: "HPC Guide"
     url: /hpc_guide

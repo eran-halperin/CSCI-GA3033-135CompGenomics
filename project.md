@@ -1,40 +1,38 @@
 ---
 layout: default
-title: Final Research Paper
+title: Project & Presentation
 ---
 
-# Final Research Paper
+# Project & Presentation
 
 ## Overview
 
-> **There is NO homework in this course.** The sole deliverable is the Final Research Paper, which accounts for 90% of your grade (70% paper + 20% peer review).
+> **There are no exams and no homework in this course.** Each student chooses **one** of two options — a hands-on project or a topic presentation. The grade is **80%** presentation (project or topic) + **20%** participation in the class forum.
 
-Students will conduct original research at the intersection of machine learning and genomics, produce a conference-style paper, and participate in a double-blind peer-review process during Week 14.
+The objective is to provide familiarity with machine learning and statistical genomics. See the [Syllabus](/) for the full assignments and policies.
 
 ---
 
-## Paper Requirements
+## Option 1 — Hands-on Project
 
-| Requirement | Details |
+Students choose a project where they use existing data and code from an earlier paper for benchmarking and for developing improved approaches. These are guided projects with the teaching staff.
+
+Projects are chosen from a list of topics provided by the teaching staff. Examples (non-exhaustive):
+
+- **Tumor detection (MRD)** — finding tumor signals in cell-free DNA samples.
+- **Methylation foundational models** — using deep learning (transformer) approaches, specifically foundational models similar to ChatGPT, to predict health conditions of patients.
+
+### Deliverables
+
+| Deliverable | Details |
 |-------------|---------|
-| **Format** | NeurIPS / ICML style, 8 pages max (+ unlimited references) |
-| **Scope** | Novel application or methodological contribution in computational genomics or genomic ML |
+| **Short summary** | A brief write-up of the methodology, analysis, and results |
+| **Presentation** | A talk on the results in class toward the end of the semester |
 | **Code** | Public GitHub repository with reproducible experiments |
-| **Compute** | All compute-intensive experiments **must** run on the **NYU HPC Cloud Bursting platform** |
 
-### Topic Ideas (non-exhaustive)
+### Compute
 
-- Fine-tuning a genomic foundation model (e.g., Enformer, Evo, Nucleotide Transformer) on a downstream task
-- Novel architecture for sequence-to-function prediction
-- Self-supervised pre-training on single-cell or epigenomic data
-- Improving polygenic risk score prediction with deep learning
-- Multi-modal integration of genomic + clinical data
-
----
-
-## Compute Requirements
-
-All compute-intensive experiments **must** run on the **NYU HPC Cloud Bursting platform** (A100 40GB / L4 GPUs). See the [HPC Guide](hpc_guide.md) for Slurm submission scripts and environment setup — this page will be updated as NYU IT finalizes documentation ahead of the fall semester.
+Compute-intensive experiments should run on the **NYU HPC Cloud Bursting platform** (A100 40GB / L4 GPUs). See the [HPC Guide](hpc_guide.md) for Slurm submission scripts and environment setup — this page will be updated as NYU IT finalizes documentation ahead of the fall semester.
 
 - Use the tool appropriate for your project: PyTorch, R, scikit-learn, or domain-specific tools (e.g., PLINK, GATK, Scanpy)
 - Log experiments and results for reproducibility (Weights & Biases, TensorBoard, or equivalent)
@@ -42,34 +40,21 @@ All compute-intensive experiments **must** run on the **NYU HPC Cloud Bursting p
 
 ---
 
-## Timeline
+## Option 2 — Topic Presentation
 
-| Milestone | Due Date |
-|-----------|----------|
-| Topic proposal (1 page) | Week 4 |
-| Related work & methods outline | Week 7 |
-| Draft paper submission (for peer review) | Week 13 |
-| Peer reviews submitted | Week 14 (before conference) |
-| Final paper (camera-ready) | Week 14 + 1 week |
+Students can opt out of the hands-on project and instead present to the class a topic that covers a couple of computational approaches in one of the topics covered in the course.
+
+- The list of topics and papers will be given early in the semester.
+- Student presentations take place toward the end of the semester.
 
 ---
 
-## Double-Blind Peer Review
+## Class Forum Participation
 
-The Week 14 session is modeled on a real machine learning conference:
+Throughout the semester, students are expected to send questions as well as answer other students' questions in the class forum. This accounts for **20%** of the grade.
 
-1. **Anonymization** — Remove all author names and affiliations from your draft before submission. The instructor will assign papers to reviewers.
-2. **Each student reviews 2 papers** — Reviews must follow the provided rubric (novelty, soundness, clarity, significance).
-3. **Reviews are also anonymous** — Reviewers do not know whose paper they are reviewing, and authors do not know who reviewed them.
-4. **Rebuttal period** — Authors have 48 hours to respond to reviews before the final paper is due.
-5. **Presentation** — All students present their work (10 min talk + 5 min Q&A) during the Week 14 conference session.
+---
 
-### Review Rubric
+## AI Policy
 
-| Criterion | Points |
-|-----------|--------|
-| Novelty & Originality | 25 |
-| Technical Soundness | 25 |
-| Clarity & Writing Quality | 25 |
-| Experimental Rigor & Reproducibility | 25 |
-| **Total** | **100** |
+The usage of AI is allowed, both for coding and to prepare the presentations.
