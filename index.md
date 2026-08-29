@@ -35,7 +35,7 @@ Throughout, we connect the computational methods back to the underlying science 
 
 ## Course Units
 
-The course is built from the units below. They are **taught in a flexible order and often interleaved**. For example, cancer genomics follows naturally once we have covered EM, and the deconvolution unit comes near the end since the course projects do not depend on it. What stays fixed is the arc: build the statistical foundations first, then use them to read modern genomic data.
+The course is built from the units below. They are **taught in a flexible order and often interleaved**.
 
 ### Unit 1. Introduction to Genomics
 
@@ -52,11 +52,11 @@ The classical backbone of the field: recovering hidden genomic quantities from n
 
 ### Unit 3. Cancer Genomics: Early Detection
 
-A focused look at one of the highest-stakes applications in the field. When a tumor sheds DNA into the bloodstream, a simple blood draw can reveal whether a cancer is present, growing, or evolving. We cover cell-free DNA and minimal residual disease (MRD) detection, and take a first look at separating tumor signal from healthy background, a mixture problem that Unit 6 develops in full.
+A focused look at one of the highest-stakes applications. When a tumor sheds DNA into the bloodstream, a simple blood draw can reveal whether a cancer is present, growing, or evolving. We cover cell-free DNA and minimal residual disease (MRD) detection, and take a first look at separating tumor signal from healthy background, a mixture problem that Unit 6 develops in full.
 
 ### Unit 4. From Genes to Disease
 
-How genetic variation is linked to disease, and why that question is inseparable from population structure. Genome-wide association studies, confounding by ancestry, heritability, linear mixed models, and polygenic risk scores. Here we close the loop from Unit 2: the same ancestry and structure estimates that look like nuisance parameters are exactly what make disease-gene discovery possible.
+How genetic variation is linked to disease, and why that question is inseparable from population structure. Genome-wide association studies, confounding by ancestry, heritability, linear mixed models, and polygenic risk scores.
 
 ### Unit 5. Foundation Models in Genomics
 
@@ -64,7 +64,7 @@ The ideas behind modern language models, now trained on DNA. We cover the deep l
 
 ### Unit 6. Deconvolution Methods in Genomics
 
-Real genomic samples are mixtures: many cell types in a methylation or RNA sample, many microbial genomes in a microbiome sample. Building on maximum likelihood and EM, we study methods that pull these mixtures apart, including tensor deconvolution, non-negative matrix factorization, and maximum likelihood approaches, with applications across methylation and microbiome data.
+Real genomic samples are mixtures: many cell types in a methylation or RNA sample, many microbial genomes in a microbiome sample. We will study advanced approaches for deconvolution, including tensor deconvolution, non-negative matrix factorization, and maximum likelihood approaches, with applications across methylation, RNA, and microbiome data.
 
 ---
 
