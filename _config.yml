@@ -1,7 +1,7 @@
 theme: jekyll-theme-minimal
 title: "Computational Genomics"
 repository: eran-halperin/CSCI-GA3033-135CompGenomics
-description: "Statistical Foundations to Genomic Foundational Models"
+description: "Machine Learning for Genomics: from statistical foundations to genomic foundation models"
 
 # Custom metadata
 instructor: "Eran Halperin, PhD"
